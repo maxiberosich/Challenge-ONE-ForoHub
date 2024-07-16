@@ -52,4 +52,11 @@ public class TopicoService {
         return topicoRepository.findByStatusTrue(paginacion).map(DatosListadoTopico::new);
     }
 
+    public Topico actualizarTopico(DatosActualizarTopico datosActualizarTopico){
+        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+        topico.setTitulo(datosActualizarTopico.titulo());
+        topico.setMensaje(datosActualizarTopico.mensaje());
+        return topico;
+    }
+
 }

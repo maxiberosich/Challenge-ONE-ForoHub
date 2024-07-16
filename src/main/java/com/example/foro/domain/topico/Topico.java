@@ -1,13 +1,10 @@
 package com.example.foro.domain.topico;
 
-import com.example.foro.domain.curso.Curso;
 import com.example.foro.domain.respuesta.Respuesta;
-import com.example.foro.domain.usuario.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,9 +12,11 @@ import java.util.List;
 @Table(name = "topicos")
 @Entity(name = "Topico")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Topico {
 
     @Id
@@ -39,6 +38,7 @@ public class Topico {
     private Long cursoId;
 
     @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Respuesta> respuestas;
 
     public Topico(DatosRegistroTopico datosRegistroTopico) {
