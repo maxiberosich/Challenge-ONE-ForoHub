@@ -64,4 +64,12 @@ public class TopicoService {
         topico.setStatus(false);
     }
 
+    public Topico retornarTopicoPorId(Long topico_id){
+        var topicoPorId = topicoRepository.getReferenceById(topico_id);
+        if (!topicoPorId.getStatus()){
+            return null;
+        }
+        return topicoPorId;
+    }
+
 }
