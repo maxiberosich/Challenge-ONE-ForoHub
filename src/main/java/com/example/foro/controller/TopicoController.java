@@ -1,6 +1,7 @@
 package com.example.foro.controller;
 
 import com.example.foro.domain.topico.*;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,17 @@ public class TopicoController {
     public ResponseEntity<Topico> actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
         var topicoActualizado = topicoService.actualizarTopico(datosActualizarTopico);
         return ResponseEntity.ok(topicoActualizado);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> eliminarTopico(@PathVariable Long id){
+        try {
+            topicoService.eliminarTopico(id);
+            return ResponseEntity.ok().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

@@ -59,4 +59,9 @@ public class TopicoService {
         return topico;
     }
 
+    public void eliminarTopico(Long topico_id){
+        var topico = topicoRepository.getReferenceById(topico_id);
+        topico.setStatus(false);
+    }
+
 }
