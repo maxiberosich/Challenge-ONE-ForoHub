@@ -1,16 +1,11 @@
 package com.example.foro.controller;
 
-import com.example.foro.domain.topico.DatosActualizarTopico;
-import com.example.foro.domain.topico.DatosRegistroTopico;
-import com.example.foro.domain.topico.Topico;
 import com.example.foro.domain.usuario.DatosActualizarUsuario;
 import com.example.foro.domain.usuario.DatosRegistroUsuario;
-import com.example.foro.domain.usuario.Usuario;
 import com.example.foro.domain.usuario.UsuarioService;
 import com.example.foro.infra.errores.ValidacionDeIntegridad;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

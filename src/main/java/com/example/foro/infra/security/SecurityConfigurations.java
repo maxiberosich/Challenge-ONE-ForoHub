@@ -28,6 +28,7 @@ public class SecurityConfigurations {
                 .and()
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

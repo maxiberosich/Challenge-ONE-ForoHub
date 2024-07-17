@@ -1,17 +1,17 @@
 package com.example.foro.domain.curso;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "cursos")
 @Entity(name = "Curso")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Curso {
 
     @Id
@@ -19,5 +19,11 @@ public class Curso {
     private Long id;
     private String nombre;
     private String categoria;
+    private Boolean status;
 
+    public Curso(DatosRegistroCurso datos) {
+        this.nombre = datos.nombre();
+        this.categoria = datos.categoria();
+        this.status = true;
+    }
 }
