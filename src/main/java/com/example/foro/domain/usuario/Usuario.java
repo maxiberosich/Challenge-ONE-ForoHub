@@ -1,10 +1,7 @@
 package com.example.foro.domain.usuario;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +12,7 @@ import java.util.List;
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -28,10 +26,15 @@ public class Usuario implements UserDetails {
     private String contrasena;
 
     public Usuario(Usuario autor) {
-        this.id = autor.getId();
         this.nombre = autor.getNombre();
         this.email = autor.getEmail();
         this.contrasena = autor.getContrasena();
+    }
+
+    public Usuario(DatosRegistroUsuario datos) {
+        this.nombre = datos.nombre();
+        this.email = datos.email();
+        this.contrasena = datos.contrasena();
     }
 
     @Override
