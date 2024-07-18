@@ -23,7 +23,7 @@ public class TopicoService {
     @Autowired
     private TopicoRepository topicoRepository;
 
-    public Topico crearTopico(DatosRegistroTopico datos) {
+    public DatosRegistroTopico crearTopico(DatosRegistroTopico datos) {
 
         if (topicoRepository.existsByTitulo(datos.titulo())) {
             throw new DataIntegrityViolationException("El título ya existe: " + datos.titulo());
@@ -41,11 +41,15 @@ public class TopicoService {
             throw new ValidacionDeIntegridad("Curso no encontrado");
         }
 
-        Topico topico = new Topico(datos);
+        var usuario = usuarioRepository.getReferenceById(datos.usuarioId());
+
+        var curso = cursoRepository.getReferenceById(datos.cursoId());
+
+        Topico topico = new Topico(datos.titulo(), datos.mensaje(), usuario, curso);
 
         topicoRepository.save(topico);
 
-        return  topico;
+        return datos;
     }
 
     public Page<DatosListadoTopico> listadoTopicos(Pageable paginacion){
@@ -64,12 +68,12 @@ public class TopicoService {
         topico.setStatus(false);
     }
 
-    public Topico retornarTopicoPorId(Long topico_id){
+    public DatosListadoTopico retornarTopicoPorId(Long topico_id){
         var topicoPorId = topicoRepository.getReferenceById(topico_id);
         if (!topicoPorId.getStatus()){
             return null;
         }
-        return topicoPorId;
+        return new DatosListadoTopico(topicoPorId);
     }
 
 }

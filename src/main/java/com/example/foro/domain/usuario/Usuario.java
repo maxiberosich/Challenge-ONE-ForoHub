@@ -1,5 +1,6 @@
 package com.example.foro.domain.usuario;
 
+import com.example.foro.domain.respuesta.Respuesta;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,9 +22,15 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
+
     private String email;
+
     private String contrasena;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Respuesta> respuestas;
 
     public Usuario(Usuario autor) {
         this.nombre = autor.getNombre();

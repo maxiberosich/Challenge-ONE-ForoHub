@@ -25,7 +25,7 @@ public class TopicoController {
     @PostMapping
     public ResponseEntity<?> crearTopico(@RequestBody DatosRegistroTopico datos) {
         try {
-            Topico topico = topicoService.crearTopico(datos);
+            DatosRegistroTopico topico = topicoService.crearTopico(datos);
             return ResponseEntity.ok(topico);
         } catch (ValidacionDeIntegridad ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
@@ -68,7 +68,7 @@ public class TopicoController {
     @GetMapping("/{id}")
     public ResponseEntity<?> retornarTopicoPorId(@PathVariable Long id) {
         try {
-            Topico topico = topicoService.retornarTopicoPorId(id);
+            DatosListadoTopico topico = topicoService.retornarTopicoPorId(id);
             if(topico == null){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El tópico fue eliminado");
             }

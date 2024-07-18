@@ -1,7 +1,7 @@
 CREATE TABLE respuestas(
     id BIGINT NOT NULL AUTO_INCREMENT,
-    mensaje TEXT NOT NULL,
-    fecha_creacion DATETIME NOT NULL,
+    mensaje VARCHAR(300) NOT NULL,
+    fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     usuario_id BIGINT NOT NULL,
     topico_id BIGINT NOT NULL,
     solucion TINYINT DEFAULT 0,

@@ -36,7 +36,7 @@ public class UsuarioController {
         try{
             var usuarioActualizado = usuarioService.actualizarUsuario(datosActualizarUsuario);
             return ResponseEntity.ok(new DatosActualizarUsuario(usuarioActualizado.getId(),usuarioActualizado.getNombre(),
-                    usuarioActualizado.getEmail(),usuarioActualizado.getContrasena()));
+                    usuarioActualizado.getEmail(),datosActualizarUsuario.contrasena()));
         }catch (ValidacionDeIntegridad ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
