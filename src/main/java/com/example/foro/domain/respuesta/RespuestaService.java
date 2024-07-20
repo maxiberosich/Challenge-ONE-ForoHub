@@ -38,4 +38,22 @@ public class RespuestaService {
                 respuesta.getFechaCreacion()
         );
     }
+
+    public Respuesta retornarRespuestaPorId(Long id) {
+
+        return respuestaRepository.getReferenceById(id);
+
+    }
+
+    public void eliminarRespuesta(Long id) {
+
+        respuestaRepository.delete(retornarRespuestaPorId(id));
+
+    }
+
+    public DatosActualizarRespuesta actualizarRespuesta(DatosActualizarRespuesta datos) {
+        Respuesta respuesta = retornarRespuestaPorId(datos.id());
+        respuesta.setMensaje(datos.mensaje());
+        return datos;
+    }
 }

@@ -4,10 +4,7 @@ import com.example.foro.domain.topico.Topico;
 import com.example.foro.domain.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -15,6 +12,7 @@ import java.util.Date;
 @Table(name = "respuestas")
 @Entity(name = "Respuesta")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
