@@ -2,8 +2,6 @@
 <h2> Descripción </h2>
 <p>En el siguiente desafio de Alura, desarrollare un foro, donde se puede crear usuarios y una vez que se loguee pueda postear mensajes. A su vez tambien se pueden dar respuestas a los distintos mensajes ya posteados</p>
 
-## :construction: Proyecto en construcción :construction:
-
 ## :hammer:Funcionalidades del proyecto
 
 - `POST /login`: Para ingresar a la Api (Se debe enviar el nombre y contraseña, se busca en la DB y si esta dentro, devuelve el token de seguridad).
